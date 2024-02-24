@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Real Estate Listings Homepage{% endblock %}
+
+{% block content %}
+<!-- Homepage content -->
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Your Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Properties</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <h1>Welcome to the Real Estate Listings Homepage</h1>
+    <p>This is where you can showcase your latest properties, search functionality, etc.</p>
+    <!-- Add your property listing cards or other content here -->
+    <div class="row">
+        <!-- Example property listing card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="property-image.jpg" class="card-img-top" alt="Property Image">
+                <div class="card-body">
+                    <h5 class="card-title">Property Title</h5>
+                    <p class="card-text">Property description goes here.</p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        <!-- Add more property listing cards as needed -->
+    </div>
+</div>
+{% endblock %}
