@@ -1,54 +1,97 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Real Estate Listings Homepage{% endblock %}
+
+{% block title %}Real Estate Listings Home{% endblock %}
 
 {% block content %}
-<!-- Homepage content -->
 <header class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Your Logo</a>
+        <a class="navbar-brand" href="#">MODAK</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Services
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Buy</a></li>
+                    <li><a class="dropdown-item" href="#">Rent</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Sell</a></li>
+                  </ul>
                 </li>
+                
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Properties</a>
+                    <a class="nav-link" href="#">About us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
+                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign In</a>
+                    <a class="nav-link" href="#">Events</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <!-- Add more navigation items here -->
             </ul>
         </div>
     </div>
 </header>
 
+
 <div class="container mt-5">
-    <h1>Welcome to the Real Estate Listings Homepage</h1>
-    <p>This is where you can showcase your latest properties, search functionality, etc.</p>
-    <!-- Add your property listing cards or other content here -->
-    <div class="row">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="property-title-text">
+                
+                <h1>MODAK FIND A HOME THAT SUITS YOUR LIFESTYLE</h1>
+                <p>Find a variety of properties that suit you, your loved ones, family, and friends easily.</p>
+                
+                <div class="input-group" style= "max-width: 400px;">
+                  <input type="text" class="form-control form-control-sm" placeholder="Enter location of desired house" aria-label="home-search">
+                      <button class="btn" type="button" style="background-color: #252633; color:yellow;">Rent</button>
+                      <button class="btn btn-secondary" type="button">Buy</button>
+                 </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="property-title-image ms-1">
+                <img src="{% static 'listings/images/homepage-image.png' %}" alt="Landing Image" class="img-fluid" style="max-width: 600px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <div>
+        <h2 class="mt-5 text-center">Featured Properties</h2>
+        <div class="row">
+        {% for property in properties %}
         <!-- Example property listing card -->
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="property-image.jpg" class="card-img-top" alt="Property Image">
+                <img src="{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}">
                 <div class="card-body">
-                    <h5 class="card-title">Property Title</h5>
-                    <p class="card-text">Property description goes here.</p>
-                    <a href="#" class="btn btn-primary">View Details</a>
+                    <h5 class="card-title">{{ property.title }}</h5>
+                    <p class="card-text">{{ property.description }}</p>
+                    <a href="{% url 'property_details' property.id %}" class="btn btn-primary">View Details</a>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <p>No properties found.</p>
+        {% endfor %}
         <!-- Add more property listing cards as needed -->
     </div>
+    </div>
+   
+    
 </div>
 {% endblock %}
