@@ -4,4 +4,4 @@ from .models import House
 class HouseForm(forms.ModelForm):
     class Meta:
         model = House
-        fields = ['title', 'description', 'price']
+        fields = ['title', 'description', 'price','image']

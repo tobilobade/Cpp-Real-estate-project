@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import House  # Import the House model
 from .forms import HouseForm
+import boto3
 
 # Create your views here.
 # def homepage(request):
@@ -10,15 +11,26 @@ def homepage(request):
     return render(request, 'listings/property_homepage.html', {'properties': featured_properties})
 
 def sell_house(request):
-    houses = House.objects.all()
     if request.method == 'POST':
-        form = HouseForm(request.POST)
+        form = HouseForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            house = form.save(commit=False)
+            house.save()  # Save the house object to generate a primary key
+
+            # Upload the file to S3
+            s3 = boto3.client('s3')
+            bucket_name = 'x23212365-my-newtest-bucket'
+            object_name = f'images/{house.id}_{house.image.name}'
+            s3.upload_fileobj(house.image, bucket_name, object_name)
+
+            # Update the house object with the S3 URL
+            house.image_url = f'https://{bucket_name}.s3.amazonaws.com/{object_name}'
+            house.save()
+
             return redirect('homepage')  # Redirect to homepage after successful submission
     else:
         form = HouseForm()
-    return render(request, 'listings/sell_house.html', {'form': form, 'houses': houses})
+    return render(request, 'listings/sell_house.html', {'form': form})
     
 def delete_house(request, house_id):
     house = get_object_or_404(House, pk=house_id)

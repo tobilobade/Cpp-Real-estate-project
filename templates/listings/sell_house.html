@@ -4,15 +4,18 @@
 {% block title %}Sell House{% endblock %}
 
 {% block content %}
+{% include 'listings/header.html' %}
 <div class="container">
     <h1>Sell Your House</h1>
     <div class="row">
         <!-- Display form for selling house -->
         <div class="col-md-6">
             <h2>Submit Your House</h2>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
+                
+                
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
