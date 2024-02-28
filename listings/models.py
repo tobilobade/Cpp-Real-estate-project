@@ -5,4 +5,9 @@ class House(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='images/')
-    # Add more fields as needed
+    image_url = models.URLField(blank=True)  # Field to store the URL of the image in S3
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.image_url = self.image.url
+        super().save(*args, **kwargs)

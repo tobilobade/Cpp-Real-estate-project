@@ -38,7 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Login</a>
                 </li>
-                <!-- Add more navigation items here -->
+               
             </ul>
         </div>
     </div>
@@ -74,13 +74,16 @@
         <h2 class="mt-5 text-center">Featured Properties</h2>
         <div class="row">
         {% for property in properties %}
-        <!-- Example property listing card -->
+   
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}">
+               <img src="https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}">
+                         https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com/images/cloudArch_F1sxGWY.png
                 <div class="card-body">
                     <h5 class="card-title">{{ property.title }}</h5>
                     <p class="card-text">{{ property.description }}</p>
+                    <p class="card-text">{{ property.price }}</p>
+                    <p class="card-text">{{ property.image_url }}</p>
                    
                 </div>
             </div>
@@ -88,7 +91,7 @@
         {% empty %}
         <p>No properties found.</p>
         {% endfor %}
-        <!-- Add more property listing cards as needed -->
+       
     </div>
     </div>
    

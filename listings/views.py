@@ -11,6 +11,7 @@ def homepage(request):
     return render(request, 'listings/property_homepage.html', {'properties': featured_properties})
 
 def sell_house(request):
+    houses = House.objects.all() 
     if request.method == 'POST':
         form = HouseForm(request.POST, request.FILES)
         if form.is_valid():
@@ -20,7 +21,7 @@ def sell_house(request):
             # Upload the file to S3
             s3 = boto3.client('s3')
             bucket_name = 'x23212365-my-newtest-bucket'
-            object_name = f'images/{house.id}_{house.image.name}'
+            object_name = f'{house.image.name}'
             s3.upload_fileobj(house.image, bucket_name, object_name)
 
             # Update the house object with the S3 URL
@@ -30,7 +31,7 @@ def sell_house(request):
             return redirect('homepage')  # Redirect to homepage after successful submission
     else:
         form = HouseForm()
-    return render(request, 'listings/sell_house.html', {'form': form})
+    return render(request, 'listings/sell_house.html', {'form': form ,'houses': houses})
     
 def delete_house(request, house_id):
     house = get_object_or_404(House, pk=house_id)
