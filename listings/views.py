@@ -16,15 +16,15 @@ def sell_house(request):
         form = HouseForm(request.POST, request.FILES)
         if form.is_valid():
             house = form.save(commit=False)
-            house.save()  # Save the house object to generate a primary key
+            house.save()  # Saved the house object to generate a primary key
 
-            # Upload the file to S3
+            # Uploaded the file to S3
             s3 = boto3.client('s3')
             bucket_name = 'x23212365-my-newtest-bucket'
             object_name = f'{house.image.name}'
             s3.upload_fileobj(house.image, bucket_name, object_name)
 
-            # Update the house object with the S3 URL
+            # Updated the house object with the S3 URL
             house.image_url = f'https://{bucket_name}.s3.amazonaws.com/{object_name}'
             house.save()
 
