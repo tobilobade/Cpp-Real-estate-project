@@ -5,46 +5,7 @@
 {% block title %}Real Estate Listings Home{% endblock %}
 
 {% block content %}
-<header class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">MODAK</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       Services
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Buy</a></li>
-                    <li><a class="dropdown-item" href="#">Rent</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sell</a></li>
-                  </ul>
-                </li>
-                
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About us</a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-               
-            </ul>
-        </div>
-    </div>
-</header>
-
-
+{% include 'listings/header.html' %}
 <div class="container mt-5">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-6">
@@ -75,15 +36,19 @@
         <div class="row">
         {% for property in properties %}
    
-        <div class="col-md-4 mb-4">
-            <div class="card">
-               <img src="https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}">
-                         https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com/images/cloudArch_F1sxGWY.png
-                <div class="card-body">
-                    <h5 class="card-title">{{ property.title }}</h5>
-                    <p class="card-text">{{ property.description }}</p>
+        <div class="col-md-3 mb-4 ms-5 mt-4">
+            <div class="card h-100">
+               <img src="https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}" width="300px" height="300px">
+                <div class="card-body ">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="card-title">{{ property.title }}</h5>
+                      <p class="card-text border border-success border-3 px-2">{{ property.status }}</p>
+                    </div>
+                    
+                    <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{ property.description }}</p>
                     <p class="card-text">{{ property.price }}</p>
-                    <p class="card-text">{{ property.image_url }}</p>
+                  <a href="{% url 'property_detail' property.id %}" class="btn btn-success">View details</a>
+                    <!--<p class="card-text">{{ property.image_url }}</p>-->
                    
                 </div>
             </div>

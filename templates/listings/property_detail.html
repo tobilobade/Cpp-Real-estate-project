@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ property.title }} Details
+{% endblock %}
+
+{% block content %}
+{% include 'listings/header.html' %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+               <img src="https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}" width="500px" height="500px">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ property.title }}</h5>
+                        <p class="card-text">{{ property.description }}</p>
+                        <p class="card-text">Price: {{ property.price }}</p>
+                        <p class="card-text">Address: {{ property.address }}</p>
+                        <p class="card-text">Contact: {{ property.contact }}</p>
+                        <p class="card-text">Status: {{ property.status }}</p>
+                        <!-- Add more details as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

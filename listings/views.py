@@ -33,6 +33,12 @@ def sell_house(request):
         form = HouseForm()
     return render(request, 'listings/sell_house.html', {'form': form ,'houses': houses})
     
+
+def property_detail(request, house_id):
+    # Fetch the house object corresponding to the house_id
+    house = get_object_or_404(House, pk=house_id)
+    return render(request, 'listings/property_detail.html', {'property': house})
+    
 def delete_house(request, house_id):
     house = get_object_or_404(House, pk=house_id)
     if request.method == 'POST':
