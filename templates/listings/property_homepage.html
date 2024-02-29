@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="property-title-text">
                 
-                <h1>MODAK FIND A HOME THAT SUITS YOUR LIFESTYLE</h1>
+                <h2>MODAK FIND A HOME THAT SUITS YOUR LIFESTYLE</h2>
                 <p>Find a variety of properties that suit you, your loved ones, family, and friends easily.</p>
                 
                 <div class="input-group" style= "max-width: 400px;">
@@ -32,7 +32,7 @@
 
     
     <div>
-        <h2 class="mt-5 text-center">Featured Properties</h2>
+        <h3 class="mt-5 text-center">PROPERTIES AVAILABLE</h3>
         <div class="row">
         {% for property in properties %}
    
@@ -42,12 +42,12 @@
                 <div class="card-body ">
                     <div class="d-flex justify-content-between">
                       <h5 class="card-title">{{ property.title }}</h5>
-                      <p class="card-text border border-success border-3 px-2 text-uppercase">{{ property.status }}</p>
+                      <p class="card-text border border-success border-2 px-2 text-uppercase p-auto" style="border-radius:15px; background:green; color:white;">{{ property.status }}</p>
                     </div>
                     
                     <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{ property.description }}</p>
                     <p class="card-text">{{ property.price }}</p>
-                  <a href="{% url 'property_detail' property.id %}" class="btn btn-success">View details</a>
+                  <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">View details</a>
                     <!--<p class="card-text">{{ property.image_url }}</p>-->
                    
                 </div>
@@ -59,7 +59,45 @@
        
     </div>
     </div>
+    
+    <div>
+        <h3 class = "mt-5 mb-2 text-center">FEATURES</h3>
+        <p class ="text-center mb-5">Access a wide range of features to make your home search easy be it renting , buying or selling your house</p>
+        <div class = "d-flex justify-content-evenly mb-5">
+            
+        <div class = "card border border-1 h-100 px-3 py-4 " style="width: 25rem;">
+          <img src="{% static 'listings/images/buy-illustration.png' %}" alt="buy-illustration" class="img-fluid m-auto pb-2" style="width: 200px;">
+          <div class = "card-body">
+            <h5 CLASS="text-center fw-bold">BUY</h5>
+            <p class = "card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <button class="btn btn-outline-primary">Explore homes</button>
+        </div>
+
+        <div class="card border border-1 h-100 px-3 py-4" style="width: 25rem;">
+          <img src="{% static 'listings/images/hostel-illustration.png' %}" alt="rent-illustration" class="img-fluid m-auto pb-2" style="width:100px;">
+          <div class="card-body">
+              <h5 CLASS="text-center fw-bold">RENT</h5>
+          <p class="card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <button class="btn btn-outline-primary">Find Rental</button>
+        </div>
+
+        <div class="card  border border-1 h-100 px-3 py-4" style="width: 25rem;">
+          <img src="{% static 'listings/images/sell-illustration.png' %}" alt="sell-illustration" class="img-fluid m-auto pb-2" style="width:300px;">
+          <div class="card-body">
+              <h5 CLASS="text-center fw-bold">SELL</h5>
+              <p class="card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <button class="btn btn-outline-primary">See your Options</button>
+        </div>
+    </div>
    
+   </div>
+   
+   <div>
+        <h3 class = "mt-5 mb-2 text-center">NEWSLETTER</h3>
+   </div>
     
 </div>
 {% endblock %}
