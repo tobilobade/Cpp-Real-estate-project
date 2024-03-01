@@ -1,11 +1,25 @@
 from django.db import models
 
 class House(models.Model):
+    HOUSE_CHOICES = (
+        ('single_family_detached', 'Single-family detached'),
+        ('bungalow', 'Bungalow'),
+        ('ranch_style', 'Ranch-style'),
+        ('cottage', 'Cottage'),
+        ('apartment', 'Apartment'),
+        ('duplex', 'Duplex'),
+        ('triplex', 'Triplex'),
+        ('penthouse', 'Penthouse'),
+        ('terrace_house', 'Terrace House'),
+        ('studio_apartment', 'Studio Apartment'),
+        ('semi_detached', 'Semi-detached'),
+        ('mansion', 'Mansion'),
+    )
     STATUS_CHOICES = (
         ('rent', 'For Rent'),
         ('sale', 'For Sale'),
     )
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, choices=HOUSE_CHOICES)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     contact = models.CharField(max_length=100)

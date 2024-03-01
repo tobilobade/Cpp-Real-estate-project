@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Buy Houses{% endblock %}
+
+{% block content %}
+{% include 'listings/header.html' %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Houses Available for Sale</h2>
+    <div class="row">
+        {% for house in buy_houses %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+               <img src="https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com{{ house.image_url }}" class="card-img-top" alt="{{ property.title }}" width="300px" height="300px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ house.title }}</h5>
+                    <p class="card-text" style=" display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{ house.description }}</p>
+                    <p class="card-text">Price: €{{ house.price }}</p>
+                    <a href="{% url 'property_detail' house.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No houses available for purchase.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -34,20 +34,20 @@
     <div>
         <h3 class="mt-5 text-center">PROPERTIES AVAILABLE</h3>
         <div class="row">
-        {% for property in properties %}
+        {% for property in properties|slice:6 %}
    
         <div class="col-md-3 mb-4 ms-5 mt-4">
             <div class="card h-100">
                <img src="https://x23212365-my-newtest-bucket.s3.eu-west-1.amazonaws.com{{ property.image_url }}" class="card-img-top" alt="{{ property.title }}" width="300px" height="300px">
                 <div class="card-body ">
                     <div class="d-flex justify-content-between">
-                      <h5 class="card-title">{{ property.title }}</h5>
-                      <p class="card-text border border-success border-2 px-2 text-uppercase p-auto" style="border-radius:15px; background:green; color:white;">{{ property.status }}</p>
+                      <h5 class="card-title text-capitalize">{{ property.title }}</h5>
+                      <p class="card-text border border-success border-2 px-2 text-uppercase p-auto mb-4" style="border-radius:15px; background:green; color:white;">{{ property.status }}</p>
                     </div>
                     
                     <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{ property.description }}</p>
-                    <p class="card-text">{{ property.price }}</p>
-                  <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">View details</a>
+                    <p class="card-text">€{{ property.price }}</p>
+                  <a href="{% url 'property_detail' property.id %}" class="btn btn-outline-primary">View details</a>
                     <!--<p class="card-text">{{ property.image_url }}</p>-->
                    
                 </div>
@@ -56,6 +56,10 @@
         {% empty %}
         <p>No properties found.</p>
         {% endfor %}
+        
+        <div class="text-center mt-4">
+        <a href="{% url 'view_more_properties' %}" class="btn btn-primary">View More</a>
+    </div>
        
     </div>
     </div>
@@ -71,7 +75,7 @@
             <h5 CLASS="text-center fw-bold">BUY</h5>
             <p class = "card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-primary">Explore homes</button>
+          <button class="btn btn-outline-primary">Explore Homes</button>
         </div>
 
         <div class="card border border-1 h-100 px-3 py-4" style="width: 25rem;">
