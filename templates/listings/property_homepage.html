@@ -47,7 +47,7 @@
                     
                     <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{ property.description }}</p>
                     <p class="card-text">€{{ property.price }}</p>
-                  <a href="{% url 'property_detail' property.id %}" class="btn btn-outline-primary">View details</a>
+                  <a href="{% url 'property_detail' property.id %}" class="btn btn-outline-secondary">View details</a>
                     <!--<p class="card-text">{{ property.image_url }}</p>-->
                    
                 </div>
@@ -58,7 +58,7 @@
         {% endfor %}
         
         <div class="text-center mt-4">
-        <a href="{% url 'view_more_properties' %}" class="btn btn-primary">View More</a>
+        <a href="{% url 'view_more_properties' %}" class="btn"  style="background-color: #252633; color:yellow;" >View More</a>
     </div>
        
     </div>
@@ -69,38 +69,55 @@
         <p class ="text-center mb-5">Access a wide range of features to make your home search easy be it renting , buying or selling your house</p>
         <div class = "d-flex justify-content-evenly mb-5">
             
-        <div class = "card border border-1 h-100 px-3 py-4 " style="width: 25rem;">
+        <div class = "card border border-1 h-100 px-3 py-4 " style="width: 25rem; -webkit-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);
+                -moz-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);">
           <img src="{% static 'listings/images/buy-illustration.png' %}" alt="buy-illustration" class="img-fluid m-auto pb-2" style="width: 200px;">
           <div class = "card-body">
             <h5 CLASS="text-center fw-bold">BUY</h5>
             <p class = "card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-primary">Explore Homes</button>
+          <button class="btn btn-outline-secondary">Explore Homes</button>
         </div>
 
-        <div class="card border border-1 h-100 px-3 py-4" style="width: 25rem;">
+        <div class="card border border-1 h-100 px-3 py-4" style="width: 25rem; -webkit-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);
+            -moz-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);">
           <img src="{% static 'listings/images/hostel-illustration.png' %}" alt="rent-illustration" class="img-fluid m-auto pb-2" style="width:100px;">
           <div class="card-body">
               <h5 CLASS="text-center fw-bold">RENT</h5>
           <p class="card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-primary">Find Rental</button>
+          <button class="btn btn-outline-secondary">Find Rental</button>
         </div>
 
-        <div class="card  border border-1 h-100 px-3 py-4" style="width: 25rem;">
+        <div class="card  border border-1 h-100 px-3 py-4" style="width: 25rem; -webkit-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);-moz-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);">
           <img src="{% static 'listings/images/sell-illustration.png' %}" alt="sell-illustration" class="img-fluid m-auto pb-2" style="width:300px;">
-          <div class="card-body">
+         <div class="card-body">
               <h5 CLASS="text-center fw-bold">SELL</h5>
               <p class="card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-primary">See your Options</button>
+          <button class="btn btn-outline-secondary">See your Options</button>
         </div>
     </div>
    
    </div>
    
-   <div>
-        <h3 class = "mt-5 mb-2 text-center">NEWSLETTER</h3>
+   <h3 class = "mt-5 mb-5 text-center">NEWSLETTER</h3>
+   
+<div style="background:url({% static 'listings/images/estate-picture.png' %}); background-size: cover; background-position: center; padding: 20px;">
+
+        <h3 class = "mt-5 mb-2 text-center text-white ">Subscribe to our newsletter</h3>
+       <form method="post" action="{% url 'subscribe_to_newsletter' %}" class="row g-3 needs-validation" novalidate>
+  {% csrf_token %}
+  <div style=" display:flex; flex-direction:column;">
+    <input type="email" class="form-control" name="email" placeholder="Enter your email address" style="width:300px; margin:20px auto;" required>
+     <button type="submit" class="btn "style="width:300px; margin:20px auto; background-color: yellow; color:#252633;">Subscribe</button>
+    <div class="invalid-feedback">
+      Please provide a valid email address.
+    </div>
+  </div>
+  
+</form>
+
    </div>
     
 </div>

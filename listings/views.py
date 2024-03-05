@@ -63,3 +63,40 @@ def delete_house(request, house_id):
         house.delete()
         return redirect('sell_house')  # Redirect to homepage after successful deletion
     return render(request, 'listings/sell_house.html', {'house_to_delete': house})
+    
+def subscribe_to_newsletter(request):
+    if request.method == 'POST':
+        # Get email address from the form
+        email = request.POST.get('email')
+        
+        # Subscribe the user to the SNS topic
+        sns_client = boto3.client('sns', region_name='eu-west-1')
+        topic_arn = 'arn:aws:sns:eu-west-1:250738637992:x23212365-Real-estate'
+        subscription = sns_client.subscribe(
+            TopicArn=topic_arn,
+            Protocol='email',
+            Endpoint=email
+        )
+        
+        # Send confirmation message
+        if subscription['ResponseMetadata']['HTTPStatusCode'] == 200:
+            message = """
+            Hi there,
+
+            Thank you for subscribing to our newsletter! You'll now receive the latest updates and news about our real estate listings.
+
+            Best regards,
+            The Modak Estate Team
+            """            
+            sns_client.publish(
+                TopicArn=topic_arn,
+                Message=message,
+                Subject='Newsletter Subscription Confirmation'
+            )
+            return render(request, 'listings/subscription_success.html')
+        else:
+            # Handle subscription failure
+            return render(request, 'listings/subscription_failure.html')
+    else:
+        # Handle GET request (render homepage with subscription form)
+        return render(request, 'listings/property_homepage.html')

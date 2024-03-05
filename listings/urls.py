@@ -10,6 +10,7 @@ urlpatterns = [
     path('buy-houses/', views.render_buy_houses, name='render_buy_houses'),
     path('rent-houses/', views.render_rent_houses, name='render_rent_houses'),
     path('view-more-properties/', views.view_more_properties, name='view_more_properties'),
+   path('subscribe-to-newsletter/', views.subscribe_to_newsletter, name='subscribe_to_newsletter'),
     # Add more URL patterns as needed
 ]
 
