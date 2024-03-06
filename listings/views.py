@@ -67,6 +67,25 @@ def delete_house(request, house_id):
         return redirect('sell_house')  # Redirect to homepage after successful deletion
     return render(request, 'listings/sell_house.html', {'house_to_delete': house})
     
+def update_house(request, house_id):
+    # Get the house object
+    house = get_object_or_404(House, pk=house_id)
+
+    if request.method == 'POST':
+        # Create a form instance with the POST data and the instance of the house object
+        form = HouseForm(request.POST, request.FILES, instance=house)
+        
+        if form.is_valid():
+            # Save the form to update the house details
+            form.save()
+            return redirect('homepage')  # Redirect to homepage after successful update
+
+    else:
+        # If it's a GET request, create a form instance with the instance of the house object
+        form = HouseForm(instance=house)
+
+    return render(request, 'listings/update_house.html', {'form': form})
+    
 
 def subscribe_to_newsletter(request):
     if request.method == 'POST':

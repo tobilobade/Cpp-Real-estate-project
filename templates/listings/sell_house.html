@@ -28,10 +28,15 @@
                         <h5>{{ house.title }}</h5>
                         <p>{{ house.description }}</p>
                         <!-- Other house details -->
-                        <form method="post" action="{% url 'delete_house' house.id %}">
+                        
+                        <div style="display: flex; flex-direction:row; gap:10px;">
+                             <form method="post" action="{% url 'delete_house' house.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                         <a href="{% url 'update_house' house.id %}" class="btn btn-secondary">Update</a>
+                        </div>
+                       
                     </li>
                     {% endfor %}
                 </ul>
