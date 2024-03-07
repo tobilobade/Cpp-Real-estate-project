@@ -12,6 +12,7 @@ urlpatterns = [
     path('view-more-properties/', views.view_more_properties, name='view_more_properties'),
     path('subscribe-to-newsletter/', views.subscribe_to_newsletter, name='subscribe_to_newsletter'),
     path('update/<int:house_id>/', views.update_house, name='update_house')
+    
     # Add more URL patterns as needed
 ]
 

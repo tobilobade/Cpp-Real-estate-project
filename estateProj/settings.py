@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'listings'
+    'listings',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,6 @@ EMAIL_USE_TLS = True  # Enable TLS for secure connection
 EMAIL_HOST_USER = 'dammyadetugboboh@gmail.com'  # Replace with your email address or SMTP username
 EMAIL_HOST_PASSWORD = 'segczniueoiimhmp' 
 DEFAULT_FROM_EMAIL = 'dammyadetugboboh@gmail.com'
+
+
+LOGIN_REDIRECT_URL = '/'
