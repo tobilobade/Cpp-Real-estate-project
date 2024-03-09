@@ -5,6 +5,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserSignUpForm, SignInForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 def sign_up(request):
@@ -25,8 +29,15 @@ def sign_in(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
+            
+            # Query the database to find a user with the provided username
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                user = None
+            
+            # If a user is found and the password matches, log in the user
+            if user and check_password(password, user.password):
                 login(request, user)
                 # Redirect to the homepage or any other desired page
                 return redirect('homepage')
