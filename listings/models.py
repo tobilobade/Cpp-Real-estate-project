@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class House(models.Model):
     HOUSE_CHOICES = (
@@ -26,7 +27,8 @@ class House(models.Model):
     address = models.CharField(max_length=255)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     image = models.ImageField(upload_to='images/')
-    image_url = models.URLField(blank=True)  # Field to store the URL of the image in S3
+    image_url = models.URLField(blank=True)  # I added this Field to store the URL of the image in S3
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
    
 
     def save(self, *args, **kwargs):

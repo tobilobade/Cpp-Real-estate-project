@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 import boto3
 from .models import House  # Import the House model
 from .forms import HouseForm
@@ -6,6 +7,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
+from django.http import HttpResponseForbidden
 
 # Create your views here.
 # def homepage(request):
@@ -14,12 +16,14 @@ def homepage(request):
     featured_properties = House.objects.all()[:6]
     return render(request, 'listings/property_homepage.html', {'properties': featured_properties})
 
+@login_required
 def sell_house(request):
     houses = House.objects.all() 
     if request.method == 'POST':
         form = HouseForm(request.POST, request.FILES)
         if form.is_valid():
             house = form.save(commit=False)
+            house.user = request.user
             house.save()  # Saved the house object to generate a primary key
             # Uploaded the file to S3
             s3 = boto3.client('s3')
@@ -34,6 +38,7 @@ def sell_house(request):
             return redirect('homepage')  # Redirect to homepage after successful submission
     else:
         form = HouseForm()
+    houses = House.objects.filter(user=request.user)
     return render(request, 'listings/sell_house.html', {'form': form ,'houses': houses})
     
 def render_buy_houses(request):
@@ -60,12 +65,18 @@ def property_detail(request, house_id):
     house = get_object_or_404(House, pk=house_id)
     return render(request, 'listings/property_detail.html', {'property': house})
     
+
+@login_required    
 def delete_house(request, house_id):
+    user = request.user  
     house = get_object_or_404(House, pk=house_id)
-    if request.method == 'POST':
-        house.delete()
-        return redirect('sell_house')  # Redirect to homepage after successful deletion
-    return render(request, 'listings/sell_house.html', {'house_to_delete': house})
+    if house.user == request.user:
+        if request.method == 'POST':
+            house.delete()
+            return redirect('sell_house')  # Redirect to homepage after successful deletion
+        return render(request, 'listings/sell_house.html', {'house_to_delete': house})
+    else:
+        return HttpResponseForbidden("You are not authorized to delete this house.")
     
 def update_house(request, house_id):
     # Get the house object
