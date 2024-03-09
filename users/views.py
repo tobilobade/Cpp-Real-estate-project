@@ -20,22 +20,21 @@ def sign_up(request):
         form = UserSignUpForm()
     return render(request, 'users/signup.html', {'form': form})
     
+from django.contrib.auth import authenticate, login
+
 def sign_in(request):
     if request.method == 'POST':
         form = SignInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            # Manually check the database for authentication
-            user = User.objects.filter(username=username).first()
-            if user is not None and user.check_password(password):
-                # Manually set user as authenticated in the session
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
                 login(request, user)
-                # Redirect to the homepage or any other desired page
+                # Redirect to homepage or any other desired page
                 return redirect('homepage')
             else:
-                # Authentication failed
-                return render(request, 'users/signin.html', {'form': form, 'error_message': 'Invalid username or password'})
+                form.add_error(None, 'Invalid username or password')
     else:
         form = SignInForm()
     return render(request, 'users/signin.html', {'form': form})
