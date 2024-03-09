@@ -14,11 +14,14 @@
                 <h2>MODAK FIND A HOME THAT SUITS YOUR LIFESTYLE</h2>
                 <p>Find a variety of properties or houses that suit you, your loved ones, family, and friends easily.</p>
                 
-                <div class="input-group" style= "max-width: 400px;">
-                  <input type="text" class="form-control form-control-sm" placeholder="Enter location of desired house" aria-label="home-search">
-                      <button class="btn" type="button" style="background-color: #252633; color:yellow;">Rent</button>
-                      <button class="btn btn-secondary" type="button">Buy</button>
-                 </div>
+                <form method="post" action="{% url 'search_view' %}">
+    {% csrf_token %}
+    <div class="input-group" style="max-width: 400px;">
+        <input type="text" name="country" class="form-control form-control-sm" placeholder="Enter country of desired house" aria-label="home-search">
+        <button class="btn btn-primary" type="submit" name="status" value="rent">Rent</button>
+        <button class="btn btn-secondary" type="submit" name="status" value="sale">Buy</button>
+    </div>
+</form>
             </div>
         </div>
         

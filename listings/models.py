@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 
 class House(models.Model):
     HOUSE_CHOICES = (
@@ -29,6 +30,7 @@ class House(models.Model):
     image = models.ImageField(upload_to='images/')
     image_url = models.URLField(blank=True)  # I added this Field to store the URL of the image in S3
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    country = CountryField(default='Ireland')
    
 
     def save(self, *args, **kwargs):

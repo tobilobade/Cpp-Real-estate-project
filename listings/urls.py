@@ -11,7 +11,8 @@ urlpatterns = [
     path('rent-houses/', views.render_rent_houses, name='render_rent_houses'),
     path('view-more-properties/', views.view_more_properties, name='view_more_properties'),
     path('subscribe-to-newsletter/', views.subscribe_to_newsletter, name='subscribe_to_newsletter'),
-    path('update/<int:house_id>/', views.update_house, name='update_house')
+    path('update/<int:house_id>/', views.update_house, name='update_house'),
+    path('search/', views.search_view, name='search_view'),
     
     # Add more URL patterns as needed
 ]

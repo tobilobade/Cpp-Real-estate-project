@@ -8,10 +8,10 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
 from django.http import HttpResponseForbidden
+from .house_search import search_houses
+from django_countries import countries
 
-# Create your views here.
-# def homepage(request):
-#     return render(request, 'listings/property_homepage.html')
+
 def homepage(request):
     featured_properties = House.objects.all()[:6]
     return render(request, 'listings/property_homepage.html', {'properties': featured_properties, 'user': request.user})
@@ -133,3 +133,30 @@ def subscribe_to_newsletter(request):
     else:
         # Handle GET request (render homepage with subscription form)
         return render(request, 'listings/property_homepage.html')
+        
+
+def search_view(request):
+    if request.method == 'POST':
+        # Extract search criteria from form data
+        country_name = request.POST.get('country')
+        status = request.POST.get('status')
+        
+        # Convert country name to country code
+        country_code = get_country_code(country_name)
+
+        # Perform search using library function
+        houses = search_houses(country_code, status)
+
+        # Pass search results to template for rendering
+        return render(request, 'listings/search_result.html', {'houses': houses})
+    else:
+        # Render the search form
+        return render(request, 'search_form.html')
+
+def get_country_code(country_name):
+    try:
+        country_code = [code for code, name in countries if name == country_name][0]
+        return country_code
+    except IndexError:
+        return None
+    
