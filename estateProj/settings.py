@@ -34,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com","x23212365-cpp-realestate-env.eba-r4r2sa2u.eu-west-1.elasticbeanstalk.com", "172.31.10.77"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com"
+    "https://f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com", "https://x23212365-cpp-realestate-env.eba-r4r2sa2u.eu-west-1.elasticbeanstalk.com/"
     # Add other trusted origins as needed
 ]
 
