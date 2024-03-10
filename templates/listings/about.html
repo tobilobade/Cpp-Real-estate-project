@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About us{% endblock %}
+
+{% block content %}
+
+<style>
+    .about-modak{
+        background:url({% static 'listings/images/about-modak.png' %}); 
+        background-size: cover; 
+        background-position: center; 
+        padding: 20px;
+        height:100vh;
+    }
+</style>
+<div class="about-modak text-center text-light d-flex align-items-center flex-column justify-content-evenly" >
+    <h1>MODAK ESTATE LISTING</h1>
+    <h3> 
+    This project focuses on the development of a real estate listings website utilizing the Django framework integrated with various AWS services. 
+    The website aims to provide users with a seamless property browsing and listing experience, leveraging AWS servicesfor efficient deployment, scaling,
+    and management.
+  </h3>
+    
+    <p>Developed by Saeed Oluwadamilola Adetugboboh</p>
+        
+</div>
+
+{% endblock %}

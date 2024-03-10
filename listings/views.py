@@ -160,3 +160,10 @@ def get_country_code(country_name):
     except IndexError:
         return None
     
+
+def about_us(request):
+    return render(request, 'listings/about.html')
+
+
+def contact_us(request):
+    return render(request, 'listings/contact_us.html')

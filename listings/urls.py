@@ -13,6 +13,8 @@ urlpatterns = [
     path('subscribe-to-newsletter/', views.subscribe_to_newsletter, name='subscribe_to_newsletter'),
     path('update/<int:house_id>/', views.update_house, name='update_house'),
     path('search/', views.search_view, name='search_view'),
+    path('about-us/', views.about_us, name='about_us'),
+    path('contact-us/', views.contact_us, name='contact_us'),
     
     # Add more URL patterns as needed
 ]
