@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from .utils import get_parameter
 
 load_dotenv()
 
@@ -160,8 +161,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'email'
         ],
         'APP': {
-            'client_id': os.environ['CLIENT_ID'],
-            'secret': os.environ['CLIENT_SECRET'],
+            'client_id': get_parameter('CLIENT_ID'),  # Retrieve client ID from AWS Parameter Store
+            'secret': get_parameter('CLIENT_SECRET'),  # Retrieve client secret from AWS Parameter Store
         },
         'AUTH_PARAMS': {
             'access_type':'online',
