@@ -31,19 +31,21 @@
                     <a class="nav-link" href="#">Events</a>
                 </li>
                 
-               {% if user.is_authenticated %}
-                <div class="nav-item">
-                    <a class="nav-link" href="{% url 'sign_out' %}">{{ user.username }}</a>
-                </div>
-              
+         {% if user.is_authenticated %}
+                    <!-- User is authenticated, show the user's name and a logout link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
                 {% else %}
-                <div class="nav-item">
-                    <a class="nav-link" href="{% url 'sign_in' %}">Sign in</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="{% url 'users:sign_up' %}">Sign up</a>
-                </div>
+                    <!-- User is not authenticated, show the login link -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
                 {% endif %}
+               
                 <!-- Add more navigation items here -->
             </ul>
         </div>
