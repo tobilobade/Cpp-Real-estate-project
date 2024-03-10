@@ -20,15 +20,6 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-# Session cookie settings
-SESSION_COOKIE_SECURE = True  # Mark session cookie as secure
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Expire session when browser is closed
-SESSION_COOKIE_AGE = 86400  # Set session cookie age to 1 day (in seconds)
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's%*siso!-wdstsx21cb3szd6xc$+$b!+qg&p%dmq@7jz+b4!(t'
 
