@@ -15,8 +15,7 @@ urlpatterns = [
     path('search/', views.search_view, name='search_view'),
     path('about-us/', views.about_us, name='about_us'),
     path('contact-us/', views.contact_us, name='contact_us'),
-    
-    # Add more URL patterns as needed
+    path('get-ip-location/', views.get_ip_location_view, name='get_ip_location'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

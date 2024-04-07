@@ -5,6 +5,8 @@
 {% block title %}Real Estate Listings Home{% endblock %}
 
 {% block content %}
+<p class="text-center">Your current Location : <span id="ip-location"></span></p>
+
 
 <div class="container mt-5">
     <div class="row justify-content-center align-items-center">
@@ -124,4 +126,16 @@
    </div>
     
 </div>
+<script>
+    // Make an AJAX request to get IP location data
+    window.onload = function() {
+        fetch('/get-ip-location/')
+            .then(response => response.json())
+            .then(data => {
+                // Update the IP location in the HTML
+                document.getElementById('ip-location').innerText = `${data.city}, ${data.region}, ${data.country}`;
+            })
+            .catch(error => console.error('Error:', error));
+    };
+</script>
 {% endblock %}

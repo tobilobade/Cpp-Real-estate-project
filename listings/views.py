@@ -7,9 +7,21 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden,JsonResponse
 from .house_search import search_houses
 from django_countries import countries
+from ip_location_pkg.findAddress import get_ip_location
+
+
+def get_ip_location_view(request):
+    # Call the function to get IP location
+    ip_location = get_ip_location()
+    if ip_location:
+        # If IP location is retrieved successfully, return it as JSON response
+        return JsonResponse(ip_location)
+    else:
+        # If IP location retrieval fails, return an error message
+        return JsonResponse({'error': 'Failed to retrieve IP location.'}, status=500)
 
 
 def homepage(request):
