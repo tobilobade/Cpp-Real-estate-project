@@ -12,8 +12,9 @@ from .models import House  # Import the House model
 from .forms import HouseForm
 
 
-def get_ip_location_view():
+def get_ip_location_view(request):
     """View function for the ip library."""
+    user = request.user
     # Call the function to get IP location
     ip_location = get_ip_location()
     if ip_location:
