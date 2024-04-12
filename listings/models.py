@@ -1,8 +1,10 @@
+"""models for creating listings or houses """
 from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 
 class House(models.Model):
+    """classes of houses for listings """
     HOUSE_CHOICES = (
         ('single_family_detached', 'Single-family detached'),
         ('bungalow', 'Bungalow'),
@@ -31,7 +33,6 @@ class House(models.Model):
     image_url = models.URLField(blank=True)  # I added this Field to store the URL of the image in S3
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     country = CountryField(default='Ireland')
-   
 
     def save(self, *args, **kwargs):
         if self.image:

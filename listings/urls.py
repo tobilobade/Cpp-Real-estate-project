@@ -1,6 +1,7 @@
+"""urls for routes for listings pages"""
 from django.urls import path
-from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from . import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
