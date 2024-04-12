@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -26,10 +25,14 @@ SECRET_KEY = 's%*siso!-wdstsx21cb3szd6xc$+$b!+qg&p%dmq@7jz+b4!(t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com","x23212365-cpp-realestate-env.eba-r4r2sa2u.eu-west-1.elasticbeanstalk.com", "172.31.10.77"]
+ALLOWED_HOSTS = ["f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com",
+"x23212365-cpp-realestate-env.eba-r4r2sa2u.eu-west-1.elasticbeanstalk.com",
+"172.31.10.77"
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com", "https://x23212365-cpp-realestate-env.eba-r4r2sa2u.eu-west-1.elasticbeanstalk.com/"
+"https://f25e4ec10ed24d02b9a4ff5cd5c8af06.vfs.cloud9.eu-west-1.amazonaws.com",
+"https://x23212365-cpp-realestate-env.eba-r4r2sa2u.eu-west-1.elasticbeanstalk.com/"
     # Add other trusted origins as needed
 ]
 
@@ -144,7 +147,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server address
 EMAIL_PORT = 587  # Replace with the port number of your SMTP server
 EMAIL_USE_TLS = True  # Enable TLS for secure connection
 EMAIL_HOST_USER = 'dammyadetugboboh@gmail.com'  # Replace with your email address or SMTP username
-EMAIL_HOST_PASSWORD = 'segczniueoiimhmp' 
+EMAIL_HOST_PASSWORD = 'segczniueoiimhmp'
 DEFAULT_FROM_EMAIL = 'dammyadetugboboh@gmail.com'
 
 AUTHENTICATION_BACKENDS = [
