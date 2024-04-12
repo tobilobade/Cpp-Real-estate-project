@@ -14,3 +14,4 @@ class HouseForm(forms.ModelForm):
         """classes for creating listings or houses """
         model = House
         fields = ['title', 'description', 'price','image','contact', 'address', 'status','country']
+        

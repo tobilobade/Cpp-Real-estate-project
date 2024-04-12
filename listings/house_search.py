@@ -1,3 +1,4 @@
+"""file  for searching of listings or houses """
 from .models import House
 
 def search_houses(country, status):
