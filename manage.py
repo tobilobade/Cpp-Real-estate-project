@@ -1,3 +1,4 @@
+"""This is a configuration file instead of using django-admin"""
 #!/usr/bin/env python
 import os
 import sys
