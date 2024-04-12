@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware', #added this middleware to enable the auth with google
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'estateProj.urls'
