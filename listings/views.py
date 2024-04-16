@@ -68,13 +68,13 @@ def render_rent_houses(request):
 
 def view_more_properties(request):
     """View function for the viewing more properties."""
-    # Retrieve all properties
+    # Retrieving all properties
     all_properties = House.objects.all()
     return render(request, 'listings/more_properties.html', {'properties': all_properties})
 
 def property_detail(request, house_id):
     """View function for getting the propety detail."""
-    # Fetch the house object corresponding to the house_id
+    # Fetching the house object corresponding to the house_id
     house = get_object_or_404(House, pk=house_id)
     return render(request, 'listings/property_detail.html', {'property': house})
 
@@ -122,10 +122,10 @@ def subscribe_to_newsletter(request):
         # Custom message for the subscription confirmation email
         custom_message = "Thank you for subscribing to our newsletter! We're excited to keep you updated with the latest news and updates."
 
-        # Send subscription confirmation email using Django's email functionality
+        # Used to Send subscription confirmation email using Django's email functionality
         subject = 'Newsletter Subscription Confirmation'
-        message = custom_message  # Use your custom message here
-        sender_name = 'Modak'  # Specify the sender's name
+        message = custom_message  
+        sender_name = 'Modak' 
         send_mail(
             subject,
             message,
@@ -134,7 +134,7 @@ def subscribe_to_newsletter(request):
             fail_silently=False,
             html_message=message
         )
-
+#I had to comment the sns  it because of the restrictions on beanstalk
         # # Subscribe the user to the SNS topic
         # sns_client = boto3.client('sns', region_name='eu-west-1')
         # topic_arn = 'arn:aws:sns:eu-west-1:250738637992:x23212365-Real-estate'
@@ -146,27 +146,27 @@ def subscribe_to_newsletter(request):
 
         return render(request, 'listings/subscription_success.html')
     else:
-        # Handle GET request (render homepage with subscription form)
+        # Handling GET request
         return render(request, 'listings/property_homepage.html')
 
 
 def search_view(request):
     """View function for the search functionality."""
     if request.method == 'POST':
-        # Extract search criteria from form data
+        # Extracting search criteria from form data
         country_name = request.POST.get('country')
         status = request.POST.get('status')
 
-        # Convert country name to country code
+        # Converting country name to country code
         country_code = get_country_code(country_name)
 
-        # Perform search using library function
+        # Performing search using library function
         houses = search_houses(country_code, status)
 
-        # Pass search results to template for rendering
+        # Passing search results to template for rendering
         return render(request, 'listings/search_result.html', {'houses': houses})
     else:
-        # Render the search form
+        # Rendering the search form
         return render(request, 'search_form.html')
 
 def get_country_code(country_name):
@@ -181,9 +181,19 @@ def get_country_code(country_name):
 def about_us(request):
     """View function for the about page."""
     return render(request, 'listings/about.html')
+    
+def contact_query(request):
+    """View function for the contact query ticket page."""
+    return render(request, 'listings/contact_query.html')
 
 
 def contact_us(request):
     """View function for the contact page."""
-    return render(request, 'listings/contact_us.html')
+    if request.method == 'POST':
+        # Handle form submission
+        # This is where you would process the form data, send emails, etc.
+        # For now, let's just redirect to a thank you page
+        return redirect('contact_query')  # Assuming 'contact_query' is the name of the URL pattern for the contact query page
+    else:
+        return render(request, 'listings/contact_us.html')
     

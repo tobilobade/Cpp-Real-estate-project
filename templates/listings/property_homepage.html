@@ -49,7 +49,7 @@
                       <h5 class="card-title text-capitalize">{{ property.title }}</h5>
                       <p class="card-text border border-success border-2 px-2 text-uppercase p-auto mb-4" style="border-radius:15px; background:green; color:white;">{{ property.status }}</p>
                     </div>
-                    
+                     <p class="card-text fw-bold">{{ property.country }}</p>
                     <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">{{ property.description }}</p>
                     <p class="card-text">€{{ property.price }}</p>
                   <a href="{% url 'property_detail' property.id %}" class="btn btn-outline-secondary">View details</a>
@@ -81,7 +81,7 @@
             <h5 CLASS="text-center fw-bold">BUY</h5>
             <p class = "card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-secondary">Explore Homes</button>
+          <a href="/buy-houses" class="btn btn-outline-secondary">Explore Homes</a>
         </div>
 
         <div class="card border border-1 h-100 px-3 py-4" style="width: 25rem; -webkit-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);
@@ -91,7 +91,7 @@
               <h5 CLASS="text-center fw-bold">RENT</h5>
           <p class="card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-secondary">Find Rental</button>
+          <a href="/rent-houses" class="btn btn-outline-secondary">Find Rental</a>
         </div>
 
         <div class="card  border border-1 h-100 px-3 py-4" style="width: 25rem; -webkit-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);-moz-box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);box-shadow: -19px -6px 13px -4px rgba(230,225,230,1);">
@@ -100,7 +100,7 @@
               <h5 CLASS="text-center fw-bold">SELL</h5>
               <p class="card-text text-center mt-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           </div>
-          <button class="btn btn-outline-secondary">See your Options</button>
+          <a href="/sell" class="btn btn-outline-secondary">See your Options</a>
         </div>
     </div>
    
@@ -124,8 +124,61 @@
 </form>
 
    </div>
+   
+   
+   <h3 class = "mt-5 mb-5 text-center"> PRICING  </h3>
+   <div class="pricing-container d-flex justify-content-evenly">
+      
+       <div class="text-center" style=" padding:20px; border-radius:15px; background: rgb(108,102,245);
+                       background: linear-gradient(63deg, rgba(108,102,245,1) 0%, rgba(148,187,233,1) 100%); color:white;">
+            <h3 class="fw-bold">Free Plan</h3>
+            <p>Basic access to the platform's features</p>
+            <ul class="fw-light" style="list-style:none; ">
+                <li>Limited access to property listings</li>
+                <li>Basic search functionality</li>
+                <li>Ability to view property details</li>
+                <li>No verification services or discounts included</li>
+            </ul>
+             <h3 class="fw-bold mb-3">€0.00 / Month</h3>
+            <button class="btn btn-lg" style="padding:15px; background:#1c1c1c; color:yellow;">Subscribe Plan</button>
+        </div>
+
+        <div class="text-center" style=" padding:20px; border-radius:15px;background: rgb(108,102,245);
+                background: linear-gradient(63deg, rgba(108,102,245,1) 0%, rgba(148,187,233,1) 100%); color:white;">
+            <h3 class="fw-bold">Suite Plan</h3>
+            <p>Premium access to the platform's features</p>
+            <ul class="fw-light" style="list-style:none; ">
+                <li>Unlimited access to property listings</li>
+                <li>Advanced  customization options</li>
+                <li>Priority support from customer service</li>
+                <li>Exclusive discounts on property transactions</li>
+            </ul>
+             <h3 class="fw-bold mb-3">€20.00 / Month</h3>
+            <button class="btn btn-lg" style="padding:15px; background:#1c1c1c; color:yellow;">Subscribe Plan</button>
+        </div>
+
+         <div class="text-center" style="padding:20px; border-radius:15px; background: rgb(108,102,245);
+                    background: linear-gradient(63deg, rgba(108,102,245,1) 0%, rgba(148,187,233,1) 100%); color:white; ">
+               <h3 class="fw-bold">Ensuite Plan</h3>
+               
+                <p>Basic access to the platform's features</p>
+               <ul class="fw-light" style="list-style:none; ">
+                   <li>Verified people on your feed</li>
+                   <li>Verification of homes from us</li>
+                   <li>Middle man involved in Payments</li>
+                   <li>Exclusive discounts on property transactions</li>
+               </ul>
+                  <h3 class="fw-bold mb-3">€30.00 / Month</h3>
+               <button class="btn btn-lg" style="padding:15px; background:#1c1c1c; color:yellow;">Subscribe Plan</button>
+           </div>
+           
+           
+           
+   </div>
     
-</div>
+    
+       <p class = "mt-5 py-3 text-center" style="background:#1c1c1c; color:white; margin-bottom:0;"> copyright Saeed Adetugboboh Damilola 2024  </h3>
+
 <script>
     // Make an AJAX request to get IP location data
     window.onload = function() {
