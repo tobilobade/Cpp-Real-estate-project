@@ -124,8 +124,8 @@ def subscribe_to_newsletter(request):
 
         # Used to Send subscription confirmation email using Django's email functionality
         subject = 'Newsletter Subscription Confirmation'
-        message = custom_message  
-        sender_name = 'Modak' 
+        message = custom_message
+        sender_name = 'Modak'
         send_mail(
             subject,
             message,
@@ -181,7 +181,7 @@ def get_country_code(country_name):
 def about_us(request):
     """View function for the about page."""
     return render(request, 'listings/about.html')
-    
+
 def contact_query(request):
     """View function for the contact query ticket page."""
     return render(request, 'listings/contact_query.html')
