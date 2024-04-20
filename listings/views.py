@@ -186,6 +186,9 @@ def contact_query(request):
     """View function for the contact query ticket page."""
     return render(request, 'listings/contact_query.html')
 
+def contact_owner(request):
+    """View function for the contact query ticket page."""
+    return render(request, 'listings/contact_owner.html')
 
 def contact_us(request):
     """View function for the contact page."""

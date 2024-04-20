@@ -18,6 +18,7 @@ urlpatterns = [
     path('contact-us/', views.contact_us, name='contact_us'),
     path('get-ip-location/', views.get_ip_location_view, name='get_ip_location'),
     path('contact-query/', views.contact_query, name='contact_query'),
+    path('contact-owner/', views.contact_owner, name='contact_owner'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
